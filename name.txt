@@ -1,3 +1,80 @@
- My name is Manoj
- and i live in ghaggar
- insertitng more values to this file:
+ls    => to view all files
+ls -a => to view all files with hidden files
+
+$ git config --global user.name "shadyofficialz"
+
+$ git config --global user.email "shadymoodz@gmail.com"
+
+$ git config --global --edit
+
+
+=> track file before adding to staging env
+$ git add . || filename   =>  File added to staging area
+
+=> Staging area, final commit krne se phele waala area
+$ git commit -m "message of commit"
+when ever we commit there is a hashcode comes,we can use this hashcode to commit 
+
+=> checkout : to go to another brack or commit
+$ git checkout brnachname/ commit hashcode
+
+=> to view braches 
+$git branch
+$git branch -a  : to view all branches
+
+=> create branch with checkout
+$ git branch branchName
+$ git checkout -b brnachName
+
+
+=> to view all commits
+$ git log 
+
+=> merging one local repo to another
+$ git checkout dev
+(dev) $ git merge multiply
+multiply brnch ka data dev branch me aa jyega
+
+=> .gitignore
+.gitignore the not adding file to staging
+
+===============GITHUB=====================
+
+=> Adding files to Remote repository
+
+To view repository to fetch and push
+$ git remote -v
+
+To add files to git
+$ git remote add origin gitRepoLink.git
+
+To push  from branch 
+$ git branch -M master
+
+To push to branch
+$ git push -u origin master
+
+To push data to another branch
+$ git push -u origin dev
+============multiple open work============
+1. we can do by FORK or by adding collabrotar 
+for collaborator -> git repo -> setting -> manage access -> invite a collaborator
+
+afer this we can clone or can add out code into this.
+
+-> Forking a repo
+repoA.git  -> id manojKumarDogra
+repoB.git  -> shadyofficialz
+
+in repoB.git i want to contribute, then open repo repoA.git in which repoB.git is logged in. now click on fOrk icon, this will add repo data of repoA.git in repoB.git.
+
+Now we can clone repoB.git branch and can write our code.
+
+1. first add this to local by clone
+2. create diff branch, not commit in master branch
+3. now add and commit in repoB.git
+4. data added to repoB.git
+5. go to repoB.git and click on Contribute option and click on OPEN PULL REQUEST button and will CREATE PULL REQUEST
+6. Now this will come to repoA.git, under option PULL REQUEST, a request will be seen and will see the changes.
+7. click on REVIEW CHANGES button and click on APPROVE radio button and SUBMIT REVIEW.
+8. click on MERGE PULL REQUEST, then CONFIRM MERGE now new changes will reflect.
