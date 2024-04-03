@@ -1,0 +1,123 @@
+Java 17 features
+
+1. Record class : this creates a final class so inheritance with class not possible, but can be done using interface.
+1.1 cannot create non-static instance variable, but can create static variables
+1.2 cannot inheritance record class as it already inherits with java.lang.records
+
+Example of records
+public interface Sales {
+	public int val=101;
+	public void m1();
+}
+public record Customer(
+		int customerId,
+		String customerName,
+		String CustomerAddress
+)  implements Sales 
+{
+	//cannot create non-static instance variable, but can create static variables
+	//cannot inheritance record class as it already inherits with java.lang.records
+	//
+	
+	public Customer{
+		if(customerId<=0) {System.out.println("This is from consteructor");};
+	}
+	
+	public int customerIDVal(String adderess) {
+		System.out.println("Address is "+adderess);
+		return 101;
+	}
+
+	@Override
+	public void m1() {
+		System.out.println("This is java 17 method");
+	}
+	
+
+2. sealed classes and interfaces
+2.1 Sealed class is used to stop a class to be extended or implemented. You cannot derive any class from it.
+2.2 Methods of Sealed class is implemented so that no other class can extend it and inmplement its own method.
+2.3 to stop inheritance, so that can't attain or behaviours from a sealed class
+2.4 non-sealed classes can be extended to unknown classes
+2.5 sealed classes can be extended to its permitted classes
+2.6 sealed classes only permit classes from same package, not from other package
+
+Example of sealed classes/ Interfaces
+public sealed class/interface SealedCustomer permits PermanentCustomer{ }
+non-sealed class PermanentCustomer extends/implements SealedCustomer { }
+class Employess extends PermanentCustomer{}
+
+Another Sealed Example
+public sealed class SealedCustomer permits PermanentCustomer{ }
+sealed class PermanentCustomer extends SealedCustomer permits Employess{ }
+final class Employess extends PermanentCustomer{}
+
+Another Sealed Example
+public sealed class Employee permits Address, Location{}
+sealed interface Office permits Location{}
+non-sealed class Location extends Employee implements Office{}
+final class Address extends Employee{}
+
+3. Pattern Matching in Switch : Guarded pattern and Parenthesized Pattern
+
+4. Enchanced Pseudo Random Number Generators:
+Type 1 Example
+RandomGenerator generator = RandomGenerator.getDefault();
+List<Integer> values = generator.ints(1,100).boxed().limit(10).toList();
+		System.out.println(values);
+O/P [34, 26, 14, 7, 81, 33, 17, 34, 75, 39]
+
+Type 2 Example
+RandomGenerator generator = RandomGenerator.of("Random");
+long nextLong = generator.nextLong();
+System.out.println(nextLong);
+O/P 4712113257133135631
+
+Type 3 Example
+RandomGeneratorFactory<RandomGenerator> factory = RandomGeneratorFactory.of("SecureRandom");
+RandomGenerator randomGenerator = factory.create();
+long nextLong = randomGenerator.nextLong();
+System.out.println(nextLong);
+O/P 1885906093263554241
+
+Type 4 Example
+RandomGeneratorFactory.all()
+		.map(f->f.name())
+		.sorted()
+		.forEach(n->System.out.println(n));
+
+O/P
+Random
+SecureRandom
+SplittableRandom
+Xoroshiro128PlusPlus
+Xoshiro256PlusPlus
+
+5. InstantSource Interface
+
+java.time have differnt interface and classes like
+Clock
+Instant
+Localdate
+LocalDateTime
+
+
+Instant instant = InstantSource.system().instant();
+		System.err.println(instant);
+
+fixed date time
+LocalDateTime ldt=LocalDateTime.of(2022, 1,1,0,0);
+Instant instant = InstantSource.fixed(ldt.toInstant(ZoneOffset.UTC)).instant();
+System.out.println(instant);
+
+
+millis returns ht emillisecond representation of current Instant provided by InstantSource
+long millis = InstantSource.system().millis();
+System.out.println(millis);
+O/P 1712139915237
+
+clockBased on the give InstantSource with specifiecd ZoneId
+withZone() is the asnwer
+
+
+
